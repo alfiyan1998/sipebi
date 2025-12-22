@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DataBMN extends Model
+class DataBmn extends Model
 {
     protected $table = 'tb_bmn';
 

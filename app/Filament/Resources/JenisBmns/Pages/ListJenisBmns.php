@@ -10,10 +10,13 @@ class ListJenisBmns extends ListRecords
 {
     protected static string $resource = JenisBmnResource::class;
 
+    public static ?string $title = 'Daftar Jenis BMN';
+
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()
+            ->label('Buat Jenis BMN Baru'),
         ];
     }
 }

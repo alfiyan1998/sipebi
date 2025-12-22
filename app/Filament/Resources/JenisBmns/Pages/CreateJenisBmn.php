@@ -7,6 +7,7 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateJenisBmn extends CreateRecord
 {
+    
     protected static string $resource = JenisBmnResource::class;
     protected function getRedirectUrl(): string
     {

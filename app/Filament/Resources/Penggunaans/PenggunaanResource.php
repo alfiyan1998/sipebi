@@ -24,6 +24,9 @@ class PenggunaanResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Data Penggunaan';
 
+    protected static ?string $breadcrumb = 'Penggunaan BMN';
+    protected static ?string $navigationLabel = 'Penggunaan BMN';
+
     public static function form(Schema $schema): Schema
     {
         return PenggunaanForm::configure($schema);

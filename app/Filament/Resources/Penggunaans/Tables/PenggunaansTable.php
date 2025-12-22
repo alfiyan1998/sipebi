@@ -17,12 +17,23 @@ use Filament\Notifications\Notification;
 use Filament\Actions\ActionGroup;
 use Filament\Forms\Components\Textarea;
 use App\Notifications\PenggunaanStatusMail;
+use Filament\Actions\ExportAction;
+use App\Filament\Exports\PenggunaanExporter;
 
 class PenggunaansTable
 {
     public static function configure(Table $table): Table
     {
         return $table
+            ->headerActions([
+                ExportAction::make()
+                ->exporter(PenggunaanExporter::class)
+                ->label('Export Data')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->visible(fn (): bool => Access::isAdminOrSuper())
+                ->modifyQueryUsing(fn ($query) =>
+                    $query->where('status', 'Selesai')),
+            ])
             ->columns([
                 TextColumn::make('kode_list')->label('Kode List')->searchable()->sortable(),
                 TextColumn::make('user.name')->label('Nama Pengguna')->searchable()->sortable(),
@@ -54,6 +65,9 @@ class PenggunaansTable
                          Access::isAdminOrSuper() && $record->status === 'Diajukan')
                         ->color('success')
                         ->requiresConfirmation()
+                        ->modalHeading('Setujui Penggunaan')
+                        ->modalDescription('Apakah Anda yakin ingin menyetujui penggunaan ini?')
+                        ->modalSubmitActionLabel('Setujui')
                         ->action(function ($record) {
 
                             // Update status
@@ -93,6 +107,9 @@ class PenggunaansTable
                                 ->required(),
                             ])
                             ->requiresConfirmation()
+                            ->modalHeading('Tolak Penggunaan')
+                            ->modalDescription('Apakah Anda yakin ingin menolak penggunaan ini? Silakan berikan alasan penolakan.')
+                            ->modalSubmitActionLabel('Tolak')
                             ->action(function ($record, array $data){
                                 $record->update([
                                     'status' => 'Ditolak',

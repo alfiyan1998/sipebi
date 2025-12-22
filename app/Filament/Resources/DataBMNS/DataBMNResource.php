@@ -8,7 +8,7 @@ use App\Filament\Resources\DataBMNS\Pages\ListDataBMNS;
 use App\Filament\Resources\DataBMNS\Schemas\DataBMNForm;
 use App\Filament\Resources\DataBMNS\Tables\DataBMNSTable;
 use App\Helpers\Access;
-use App\Models\DataBMN;
+use App\Models\DataBmn;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -23,6 +23,8 @@ class DataBMNResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Data BMN';
 
+    protected static ?string $breadcrumb = 'Data BMN';
+    
     protected static ?string $navigationLabel = 'Data BMN';
     public static function form(Schema $schema): Schema
     {

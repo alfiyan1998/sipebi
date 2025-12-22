@@ -23,6 +23,8 @@ class JenisBmnResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Jenis BMN';
 
+    protected static ?string $breadcrumb = 'Jenis BMN';
+
     protected static ?string $navigationLabel = 'Jenis BMN';
 
     public static function form(Schema $schema): Schema

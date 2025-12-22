@@ -12,6 +12,7 @@ use Filament\Resources\Pages\EditRecord;
 
 class CreatePenggunaan extends CreateRecord
 {
+    protected static ?string $title = 'Buat Penggunaan Baru';
     protected static string $resource = PenggunaanResource::class;
 
     protected function getRedirectUrl(): string
