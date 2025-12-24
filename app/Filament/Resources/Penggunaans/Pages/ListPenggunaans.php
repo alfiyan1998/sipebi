@@ -10,6 +10,8 @@ class ListPenggunaans extends ListRecords
 {
     protected static string $resource = PenggunaanResource::class;
 
+    public static ?string $title = 'Daftar Penggunaan BMN';
+
     protected function getHeaderActions(): array
     {
         return [

@@ -23,6 +23,11 @@ class UserResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Data User';
 
+    protected static ?string $breadcrumb = 'Data Pengguna';
+
+    protected static ?string $navigationLabel = 'Data Pengguna';
+    
+
     public static function form(Schema $schema): Schema
     {
         return UserForm::configure($schema);

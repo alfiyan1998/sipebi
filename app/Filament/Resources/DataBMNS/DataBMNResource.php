@@ -8,7 +8,7 @@ use App\Filament\Resources\DataBMNS\Pages\ListDataBMNS;
 use App\Filament\Resources\DataBMNS\Schemas\DataBMNForm;
 use App\Filament\Resources\DataBMNS\Tables\DataBMNSTable;
 use App\Helpers\Access;
-use App\Models\DataBmn;
+use App\Models\DataBMN;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
