@@ -8,7 +8,7 @@ use App\Filament\Resources\DataBMNS\Pages\ListDataBMNS;
 use App\Filament\Resources\DataBMNS\Schemas\DataBMNForm;
 use App\Filament\Resources\DataBMNS\Tables\DataBMNSTable;
 use App\Helpers\Access;
-use App\Models\DataBMN;
+use App\Models\DataBmn;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 
 class DataBMNResource extends Resource
 {
-    protected static ?string $model = DataBMN::class;
+    protected static ?string $model = DataBmn::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ArchiveBoxArrowDown;
 
