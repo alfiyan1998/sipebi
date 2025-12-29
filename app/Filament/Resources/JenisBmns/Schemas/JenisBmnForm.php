@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\JenisBmns\Schemas;
 
-use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
 
 class JenisBmnForm
 {
@@ -11,7 +11,7 @@ class JenisBmnForm
     {
         return $schema
             ->components([
-                TextInput::make('jenis_bmn')
+                 TextInput::make('jenis_bmn')
                     ->label('Nama Jenis BMN')
                     ->required()
                     ->maxLength(255),

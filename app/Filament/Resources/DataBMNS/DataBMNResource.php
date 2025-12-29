@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\DataBMNS;
+namespace App\Filament\Resources\DataBmns;
 
-use App\Filament\Resources\DataBMNS\Pages\CreateDataBMN;
-use App\Filament\Resources\DataBMNS\Pages\EditDataBMN;
-use App\Filament\Resources\DataBMNS\Pages\ListDataBMNS;
-use App\Filament\Resources\DataBMNS\Schemas\DataBMNForm;
-use App\Filament\Resources\DataBMNS\Tables\DataBMNSTable;
+use App\Filament\Resources\DataBmns\Pages\CreateDataBmn;
+use App\Filament\Resources\DataBmns\Pages\EditDataBmn;
+use App\Filament\Resources\DataBmns\Pages\ListDataBmns;
+use App\Filament\Resources\DataBmns\Schemas\DataBmnForm;
+use App\Filament\Resources\DataBmns\Tables\DataBmnsTable;
 use App\Helpers\Access;
 use App\Models\DataBmn;
 use BackedEnum;
@@ -15,25 +15,26 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class DataBMNResource extends Resource
+class DataBmnResource extends Resource
 {
     protected static ?string $model = DataBmn::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ArchiveBoxArrowDown;
 
-    protected static ?string $recordTitleAttribute = 'Data BMN';
+    protected static ?string $recordTitleAttribute = 'DataBmn';
 
-    protected static ?string $breadcrumb = 'Data BMN';
-    
-    protected static ?string $navigationLabel = 'Data BMN';
+    public static ?string $breadcrumb = 'Data BMN';
+
+    public static ?string $navigationLabel = 'Data BMN';    
+
     public static function form(Schema $schema): Schema
     {
-        return DataBMNForm::configure($schema);
+        return DataBmnForm::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return DataBMNSTable::configure($table);
+        return DataBmnsTable::configure($table);
     }
 
     public static function getRelations(): array
@@ -46,13 +47,13 @@ class DataBMNResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListDataBMNS::route('/'),
-            'create' => CreateDataBMN::route('/create'),
-            'edit' => EditDataBMN::route('/{record}/edit'),
+            'index' => ListDataBmns::route('/'),
+            'create' => CreateDataBmn::route('/create'),
+            'edit' => EditDataBmn::route('/{record}/edit'),
         ];
     }
 
-    public static function canEdit($record):bool{
+     public static function canEdit($record):bool{
         return Access::isAdminOrSuper();
     }
 

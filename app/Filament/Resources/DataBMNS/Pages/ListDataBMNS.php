@@ -1,22 +1,20 @@
 <?php
 
-namespace App\Filament\Resources\DataBMNS\Pages;
+namespace App\Filament\Resources\DataBmns\Pages;
 
-use App\Filament\Resources\DataBMNS\DataBMNResource;
-use App\Imports\BarangImport;
+use App\Filament\Resources\DataBmns\DataBmnResource;
 use Filament\Actions\CreateAction;
-use Filament\Forms\Components\FileUpload;
-use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Support\Icons\Heroicon;
-use Maatwebsite\Excel\Excel;
 use Filament\Actions\Action;
+use Filament\Notifications\Notification;
+use Filament\Forms\Components\FileUpload;
+use Maatwebsite\Excel\Excel;
+use App\Imports\BarangImport;
+use Filament\Support\Icons\Heroicon;
 
-
-class ListDataBMNS extends ListRecords
+class ListDataBmns extends ListRecords
 {
-    protected static ?string $title = 'Data BMN';
-    protected static string $resource = DataBMNResource::class;
+    protected static string $resource = DataBmnResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -46,7 +44,7 @@ class ListDataBMNS extends ListRecords
                     ->body('Data BMN berhasil diimpor dari file Excel.')
                     ->success()
                     ->send();
-            })
+            }),
         ];
     }
 }

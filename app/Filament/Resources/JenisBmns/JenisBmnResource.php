@@ -7,13 +7,13 @@ use App\Filament\Resources\JenisBmns\Pages\EditJenisBmn;
 use App\Filament\Resources\JenisBmns\Pages\ListJenisBmns;
 use App\Filament\Resources\JenisBmns\Schemas\JenisBmnForm;
 use App\Filament\Resources\JenisBmns\Tables\JenisBmnsTable;
-use App\Helpers\Access;
 use App\Models\JenisBmn;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use App\Helpers\Access;
 
 class JenisBmnResource extends Resource
 {
@@ -21,11 +21,9 @@ class JenisBmnResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::CircleStack;
 
-    protected static ?string $recordTitleAttribute = 'Jenis BMN';
-
-    protected static ?string $breadcrumb = 'Jenis BMN';
-
-    protected static ?string $navigationLabel = 'Jenis BMN';
+    protected static ?string $recordTitleAttribute = 'JenisBmn';
+    public static ?string $breadcrumb = 'Jenis BMN';
+    public static ?string $navigationLabel = 'Jenis BMN';
 
     public static function form(Schema $schema): Schema
     {
@@ -53,7 +51,7 @@ class JenisBmnResource extends Resource
         ];
     }
 
-    public static function canAccess(): bool
+       public static function canAccess(): bool
     {
         return Access::isAdminOrSuper();
     }

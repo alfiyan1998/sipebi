@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\DataBMNS\Schemas;
+namespace App\Filament\Resources\DataBmns\Schemas;
 
 use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Section;
@@ -9,14 +9,14 @@ use Filament\Forms\Components\Select;
 use Filament\Schemas\Components\Grid;
 use App\Models\JenisBmn;
 
-class DataBMNForm
+class DataBmnForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                Section::make('Data Pokok Barang')
-                ->description('Informasi unik dan kategorisasi barang.')
+                Section::make('Data Pokok BMN')
+                ->description('Informasi unik dan kategorisasi BMN.')
                 ->schema([
                     Grid::make(2) // Atur agar field di dalamnya menjadi 2 kolom
                         ->schema([
@@ -41,8 +41,8 @@ class DataBMNForm
                 ]),
             
             // 2. SECTION: Detail Inventaris dan Stok
-            Section::make('Detail Inventaris dan Stok')
-                ->columns(3) // Section ini diatur menjadi 3 kolom
+            Section::make('Detail Inventaris')
+                 // Section ini diatur menjadi 3 kolom
                 ->schema([
                     TextInput::make('merk')
                         ->required(),  

@@ -31,7 +31,7 @@ class Totalpengguna extends ChartWidget
             'datasets' => [
                 [
                     'label' => 'Total pengguna',
-                    'data' => $dummyData,
+                    'data' => $totalPengguna,
                     'backgroundColor' => 'rgba(54, 162, 235, 0.5)',
                     'borderColor' => 'rgba(54, 162, 235, 1)',
                     'borderWidth' => 1,

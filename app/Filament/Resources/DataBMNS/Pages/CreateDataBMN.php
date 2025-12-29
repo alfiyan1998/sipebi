@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\DataBMNS\Pages;
+namespace App\Filament\Resources\DataBmns\Pages;
 
-use App\Filament\Resources\DataBMNS\DataBMNResource;
+use App\Filament\Resources\DataBmns\DataBmnResource;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateDataBMN extends CreateRecord
+class CreateDataBmn extends CreateRecord
 {
     protected static ?string $title = 'Tambah Data BMN';
-    protected static string $resource = DataBMNResource::class;
+    protected static string $resource = DataBmnResource::class;
 
     protected function getRedirectUrl(): string
     {

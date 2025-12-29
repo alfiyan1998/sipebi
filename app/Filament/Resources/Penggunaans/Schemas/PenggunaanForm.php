@@ -123,7 +123,7 @@ class PenggunaanForm
                             ])
                             ->required()
                     // ->itemLabel(fn (array $state): string => Barang::find($state['items'])->nama_barang ?? 'Item'),
-                            ->itemLabel(fn(array $state) : ?string => DataBMN::find($state['bmn_id'])->nama_barang ?? 'Item'),                    
+                            ->itemLabel(fn(array $state) : ?string => DataBmn::find($state['bmn_id'])->nama_barang ?? 'Item'),                    
                         ])
             ]);
     }

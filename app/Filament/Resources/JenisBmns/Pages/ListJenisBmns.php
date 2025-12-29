@@ -8,15 +8,14 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListJenisBmns extends ListRecords
 {
+    protected static ?string $title = 'Jenis BMN';
     protected static string $resource = JenisBmnResource::class;
-
-    public static ?string $title = 'Daftar Jenis BMN';
 
     protected function getHeaderActions(): array
     {
         return [
             CreateAction::make()
-            ->label('Buat Jenis BMN Baru'),
+                ->label('Tambah Jenis BMN'),
         ];
     }
 }

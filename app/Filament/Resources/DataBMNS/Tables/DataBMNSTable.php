@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\DataBMNS\Tables;
+namespace App\Filament\Resources\DataBmns\Tables;
 
-use App\Helpers\Access;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use App\Helpers\Access;
 
-class DataBMNSTable
+class DataBmnsTable
 {
     public static function configure(Table $table): Table
     {

@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
+use App\Helpers\Access;
 
 class JenisBmnsTable
 {
@@ -15,7 +16,7 @@ class JenisBmnsTable
         return $table
             ->columns([
                 TextColumn::make('kode_bmn')->label('Kode BMN')->searchable()->sortable(),
-            TextColumn::make('jenis_bmn')->label('Jenis BMN')->searchable()->sortable(),
+                TextColumn::make('jenis_bmn')->label('Jenis BMN')->searchable()->sortable(),
             ])
             ->filters([
                 //

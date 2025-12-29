@@ -17,7 +17,7 @@ class Register extends BaseRegister
             'nip' => $data['nip'],
             'email' => $data['email'],
             'password' => $data['password'],
-            'role'=>$data['role'] ?? 'user',
+            'role' => $data['role']
         ];
     }
     public function form(Schema $schema): Schema
@@ -31,7 +31,7 @@ class Register extends BaseRegister
                 TextInput::make('nip')
                     ->required()
                     ->label('NIP')
-                    ->numeric()
+                    
                     ->minLength(18)
                     ->maxLength(18),
 
@@ -43,6 +43,10 @@ class Register extends BaseRegister
                     ->password()
                     ->required()
                     ->revealable(),
+                TextInput::make('role')
+                    ->default('user')
+                    ->hidden(),
+
             ]);
     }
 }

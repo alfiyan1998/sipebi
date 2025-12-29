@@ -5,7 +5,7 @@ namespace App\Filament\Widgets;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use App\Models\User;
-use App\Models\DataBMN as Item;
+use App\Models\DataBmn as Item;
 use App\Models\Penggunaan;
 
 class DataStat extends StatsOverviewWidget
