@@ -22,8 +22,8 @@ class JenisBmnResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::CircleStack;
 
     protected static ?string $recordTitleAttribute = 'JenisBmn';
-    public static ?string $breadcrumb = 'Jenis BMN';
-    public static ?string $navigationLabel = 'Jenis BMN';
+    protected static ?string $breadcrumb = 'Jenis BMN';
+    protected static ?string $navigationLabel = 'Jenis BMN';
 
     public static function form(Schema $schema): Schema
     {

@@ -21,12 +21,15 @@ class DataBmnResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ArchiveBoxArrowDown;
 
-    protected static ?string $recordTitleAttribute = 'DataBmn';
+    protected static ?string $recordTitleAttribute = 'Data BMN';
+    protected static ?string $breadcrumb = 'Data BMN';
+    protected static ?string $navigationLabel = 'Data BMN';
 
-    public static ?string $breadcrumb = 'Data BMN';
+    protected static ?string $pluralLabel = 'Data BMN';
+    // protected static ?string $label = 'BMN';
 
-    public static ?string $navigationLabel = 'Data BMN';    
-
+    // optional: judul halaman list
+    // protected static ?string $navigationGroup = 'BMN';
     public static function form(Schema $schema): Schema
     {
         return DataBmnForm::configure($schema);

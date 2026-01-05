@@ -16,7 +16,14 @@ class DataBmnsTable
         return $table
             ->columns([
                 TextColumn::make('kode_barang')->label('Kode Barang')->sortable(),
-                TextColumn::make('nama_barang')->label('Nama Barang')->sortable(),
+                TextColumn::make('nama_barang')
+                ->label('Nama Barang')
+                ->formatStateUsing(fn ($record) =>
+                    strtoupper($record->merk) . ' • ' . $record->nama_barang
+                )
+                ->badge()
+                ->color('primary')
+                ,
                 TextColumn::make('jenisbmn.jenis_bmn')->label('Jenis BMN'),
             ])
             ->searchable()
