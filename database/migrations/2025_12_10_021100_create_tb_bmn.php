@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->string('merk');
             $table->foreignId('jenis_bmn_id')->constrained('tb_jenisbmn');
-            // $table->fullText('Deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }

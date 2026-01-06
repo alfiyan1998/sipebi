@@ -10,7 +10,7 @@ class DataBmn extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['kode_barang','nama_barang','merk','jenis_bmn_id'];
+    protected $fillable = ['kode_barang','nama_barang','merk', 'deskripsi','jenis_bmn_id'];
 
     public function jenisbmn()
     {
