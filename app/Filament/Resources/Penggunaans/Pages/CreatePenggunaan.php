@@ -31,23 +31,35 @@ class CreatePenggunaan extends CreateRecord
    public function afterCreate(): void{
 
         $record = $this->record;
-         $admins = User::where('role', 'admin')->get();
-         $record->load('items');
+    $record->load('items.bmn.jenisBmn');
 
-
-          // Ambil barang yang diajukan
     $items = $record->items->map(function ($item) {
         return [
             'nama' => $item->bmn->nama_barang ?? '-',
             'kode' => $item->bmn->kode_barang ?? '-',
-
         ];
     })->toArray();
 
-    foreach ($admins as $admin) {
+    // Ambil jenis_bmn_id dari barang yang diajukan
+    $jenisIds = $record->items
+        ->pluck('bmn.jenis_bmn_id')
+        ->unique()
+        ->filter()
+        ->values();
 
-        // Email Pengajuan
-        $admin->notify(new PenggunaanPengajuanMail(
+    // Cari PIC yang sesuai dengan jenis_bmn_id
+    $pics = User::where('role', 'pic')
+        ->whereIn('jenis_bmn_id', $jenisIds)
+        ->get();
+
+    // Admin & Superadmin tetap dapat semua notif
+    // $adminsAndSuper = User::whereIn('role', ['admin', 'superadmin'])->get();
+
+    // Gabungkan
+    // $recipients = $pics->merge($adminsAndSuper);
+
+    foreach ($pics as $recipient) {
+        $recipient->notify(new PenggunaanPengajuanMail(
             title: 'Pengajuan Penggunaan Baru',
             message: "{$record->user->name} mengajukan penggunaan barang.",
             status: 'Diajukan',
@@ -56,19 +68,18 @@ class CreatePenggunaan extends CreateRecord
             id: $record->id
         ));
 
-
         Notification::make()
-                    ->title('Penggunaan Baru Ditambahkan')
-                    ->body($record->user->name . ' membuat pengajuan peminjaman.')
-                    ->actions([
-                        Action::make('lihat')
-                            ->button()
-                            ->markAsRead()
-                            ->url(PenggunaanResource::getUrl('edit', ['record' => $this->record])),
-                    ])
-                    ->sendToDatabase($admin)      // tampil di panel filament
-                    ->broadcast($admin);          // realtime via pusher
-        }
+            ->title('Penggunaan Baru Ditambahkan')
+            ->body($record->user->name . ' membuat pengajuan peminjaman.')
+            ->actions([
+                Action::make('lihat')
+                    ->button()
+                    ->markAsRead()
+                    ->url(PenggunaanResource::getUrl('edit', ['record' => $this->record])),
+            ])
+            ->sendToDatabase($recipient)
+            ->broadcast($recipient);
+    }
     }
         
         protected function mutateFormDataBeforeCreate(array $data): array

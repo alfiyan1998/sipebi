@@ -36,6 +36,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'email',
         'password',
         'role',
+        'jenis_bmn_id',
     ];
 
     /**
@@ -62,5 +63,9 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function idjenisbmn()
+    {
+        return $this->belongsTo(JenisBmn::class, 'jenis_bmn_id');
     }
 }

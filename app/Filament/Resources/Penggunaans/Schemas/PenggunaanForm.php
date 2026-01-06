@@ -43,7 +43,8 @@ class PenggunaanForm
                             DatePicker::make('tanggal_kembali')
                                 ->label('Tanggal Kembali')
                                 ->minDate(now())
-                                ->nullable(),
+                                ->required()
+                                ,
                                 
                             TextInput::make('kode_list')
                                 ->label('Kode List')

@@ -7,4 +7,6 @@ class Role
     const SUPERADMIN = 'superadmin';
     const ADMIN = 'admin';
     const USER = 'user';
+
+    const PIC = 'pic';
 }

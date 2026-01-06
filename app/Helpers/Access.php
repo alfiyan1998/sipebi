@@ -25,7 +25,8 @@ class Access
     {
         return in_array(Auth::user()->role, [
             Role::ADMIN,
-            Role::SUPERADMIN
+            Role::SUPERADMIN,
+            Role::PIC
         ]);
     }
 }

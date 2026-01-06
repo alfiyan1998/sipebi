@@ -5,8 +5,10 @@ namespace App\Filament\Resources\Users\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\Action;
 
 class UsersTable
 {
@@ -26,6 +28,23 @@ class UsersTable
             ])
             ->recordActions([
                 EditAction::make(),
+                //membuat aksi ubah passwordnya saja
+                
+                Action::make('changePassword')
+                    ->label('Ubah Password')
+                    ->color('info')
+                    ->schema([
+                        TextInput::make('password')
+                            ->label('Password Baru')
+                            ->password()
+                            ->required()
+                            ->minLength(8)
+                            ->revealable(),
+                    ])
+                    ->action(function ($record, array $data): void {
+                        $record->password = bcrypt($data['password']);
+                        $record->save();
+                    }),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
