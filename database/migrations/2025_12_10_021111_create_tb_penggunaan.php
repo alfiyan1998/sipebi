@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->date('tanggal_penggunaan');
             $table->date('tanggal_kembali')->nullable();
-            $table->enum('status', ['Diajukan', 'Digunakan', 'Selesai']);            
+            $table->enum('status', ['Diajukan', 'Digunakan','Ditolak', 'Selesai']);            
             $table->timestamps();
         });
     }
