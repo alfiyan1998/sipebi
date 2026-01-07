@@ -6,6 +6,7 @@ use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use App\Models\JenisBmn;
+use Illuminate\Support\Facades\Hash;
 
 class UserForm
 {
