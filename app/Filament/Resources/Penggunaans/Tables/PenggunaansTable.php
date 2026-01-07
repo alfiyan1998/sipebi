@@ -96,46 +96,89 @@ class PenggunaansTable
                                 )
                                 );    
                         }),                       
+                        // Action::make('Ditolak')
+                        //     ->label('Ditolak')
+                        //     ->icon('heroicon-o-x-mark')
+                        //     ->color('danger')
+                        //     ->visible(fn ($record) => Access::isAdminOrSuper() && $record->status === 'Diajukan' )
+                        //     ->form([
+                        //         Textarea::make('alasan')
+                        //         ->label('alasan penolakan')
+                        //         ->required(),
+                        //     ])
+                        //     ->requiresConfirmation()
+                        //     ->modalHeading('Tolak Penggunaan')
+                        //     ->modalDescription('Apakah Anda yakin ingin menolak penggunaan ini? Silakan berikan alasan penolakan.')
+                        //     ->modalSubmitActionLabel('Tolak')
+                        //     ->action(function ($record, array $data){
+                        //         $record->update([
+                        //             'status' => 'Ditolak',
+                        //             // 'alasan_penolakan' => $data['alasan'], 
+                        //         ]);
+                        //         Notification::make()
+                        //         ->title('Penggunaan Ditolak')
+                        //         ->body('pengajuan anda ditolak. Alasan: '. $data['alasan'])
+                        //         ->danger()
+                        //         ->actions([
+                        //             Action::make('lihat')
+                        //             ->button()
+                        //             ->markAsRead()
+                        //             ->url(fn () => route('filament.admin.resources.penggunaans.view', ['record' => $record->id])),
+                        //             // ->url(route('filament.admin.resources.penggunaans.view', $record->id)),
+                        //         ])
+                        //         ->sendToDatabase($record->user)
+                        //         ->broadcast($record->user);
+                        //         //kirim ke email user
+                        //         $record->user->notify(
+                        //             new PenggunaanStatusMail(
+                        //                 'Penggunaan Ditolak',  
+                        //                 'Maaf, pengajuan penggunaan Anda ditolak. Alasan: ' . $data['alasan'],
+                        //             )
+                        //         );
+                        //     }),
                         Action::make('Ditolak')
-                            ->label('Ditolak')
-                            ->icon('heroicon-o-x-mark')
-                            ->color('danger')
-                            ->visible(fn ($record) => Access::isAdminOrSuper() && $record->status === 'Diajukan' )
-                            ->form([
-                                Textarea::make('alasan')
-                                ->label('alasan penolakan')
-                                ->required(),
-                            ])
-                            ->requiresConfirmation()
-                            ->modalHeading('Tolak Penggunaan')
-                            ->modalDescription('Apakah Anda yakin ingin menolak penggunaan ini? Silakan berikan alasan penolakan.')
-                            ->modalSubmitActionLabel('Tolak')
-                            ->action(function ($record, array $data){
-                                $record->update([
-                                    'status' => 'Ditolak',
-                                    'alasan_penolakan' => $data['alasan'], 
-                                ]);
-                                Notification::make()
-                                ->title('Penggunaan Ditolak')
-                                ->body('pengajuan anda ditolak. Alasan: '. $data['alasan'])
-                                ->danger()
-                                ->actions([
-                                    Action::make('lihat')
-                                    ->button()
-                                    ->markAsRead()
-                                    ->url(fn () => route('filament.admin.resources.penggunaans.view', ['record' => $record->id])),
-                                    // ->url(route('filament.admin.resources.penggunaans.view', $record->id)),
-                                ])
-                                ->sendToDatabase($record->user)
-                                ->broadcast($record->user);
-                                //kirim ke email user
-                                $record->user->notify(
-                                    new PenggunaanStatusMail(
-                                        'Penggunaan Ditolak',  
-                                        'Maaf, pengajuan penggunaan Anda ditolak. Alasan: ' . $data['alasan'],
-                                    )
-                                );
-                            }),
+    ->label('Ditolak')
+    ->icon('heroicon-o-x-mark')
+    ->color('danger')
+    ->visible(fn ($record) => Access::isAdminOrSuper() && $record->status === 'Diajukan' )
+    ->form([
+        Textarea::make('alasan')
+            ->label('Alasan penolakan')
+            ->required(),
+    ])
+    ->requiresConfirmation()
+    ->modalHeading('Tolak Penggunaan')
+    ->modalDescription('Apakah Anda yakin ingin menolak penggunaan ini? Silakan berikan alasan penolakan.')
+    ->modalSubmitActionLabel('Tolak')
+    ->action(function ($record, array $data){
+        // Update hanya status, TIDAK simpan alasan_penolakan
+        $record->update([
+            'status' => 'Ditolak',
+            // 👈 Hapus baris: 'alasan_penolakan' => $data['alasan'],
+        ]);
+        
+        // Notifikasi database & broadcast
+        Notification::make()
+            ->title('Penggunaan Ditolak')
+            ->body('Pengajuan Anda ditolak. Alasan: '. $data['alasan'])
+            ->danger()
+            ->actions([
+                Action::make('lihat')
+                    ->button()
+                    ->markAsRead()
+                    ->url(fn () => route('filament.admin.resources.penggunaans.view', ['record' => $record->id])),
+            ])
+            ->sendToDatabase($record->user)
+            ->broadcast($record->user);
+        
+        // Kirim email dengan alasan
+        $record->user->notify(
+            new PenggunaanStatusMail(
+                'Penggunaan Ditolak',  
+                'Maaf, pengajuan penggunaan Anda ditolak. Alasan: ' . $data['alasan'],
+            )
+        );
+    }),
                         DeleteAction::make(),
                         EditAction::make()
                         ->name('edit')

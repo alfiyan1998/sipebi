@@ -55,7 +55,7 @@ class CreatePenggunaan extends CreateRecord
     // Admin & Superadmin tetap dapat semua notif
     // $adminsAndSuper = User::whereIn('role', ['admin', 'superadmin'])->get();
 
-    // Gabungkan
+    // // Gabungkan
     // $recipients = $pics->merge($adminsAndSuper);
 
     foreach ($pics as $recipient) {
