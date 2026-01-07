@@ -16,7 +16,21 @@ class UserForm
                 TextInput::make('nip')->label('NIP')->required()->maxLength(50),
                 TextInput::make('name')->label('Nama Lengkap')->required()->maxLength(255),
                 TextInput::make('email')->label('Email')->required()->email()->maxLength(255),
-                // TextInput::make('password')->label('Password')->password()->required()->minLength(8)->revealable(),
+                TextInput::make('password')
+                    ->password()
+                    ->required()
+                    ->revealable()
+                    ->confirmed()
+                    ->minLength(8)
+                    ->visible(fn (string $context) => $context === 'create'),
+
+                TextInput::make('password_confirmation')
+                    ->password()
+                    ->required()
+                    ->label('Konfirmasi Password')
+                    ->revealable()
+                    ->dehydrated(false)
+                    ->visible(fn (string $context) => $context === 'create'),
                 Select::make('role')
                     ->label('Role')
                     ->options([
