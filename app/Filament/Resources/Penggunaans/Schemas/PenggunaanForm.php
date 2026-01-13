@@ -35,7 +35,8 @@ class PenggunaanForm
                                 DatePicker::make('tanggal_penggunaan')
                                     ->label('Tanggal Penggunaan')
                                     ->default(now())
-                                    ->disabled()
+                                    ->required()
+                                    ->minDate(now())
                                     ->dehydrated(false),
                             
                                 DatePicker::make('tanggal_kembali')
