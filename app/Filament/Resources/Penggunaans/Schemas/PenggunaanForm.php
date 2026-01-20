@@ -82,7 +82,7 @@ class PenggunaanForm
                                             $currentItemId = $get('id');
                                             
                                             // Cek apakah barang sudah digunakan
-                                            $sudahDigunakan = ListPenggunaan::where('bmn_id', $value)
+                                             $sudahDigunakan = ListPenggunaan::where('bmn_id', '=', $value, 'and')
                                                 ->when($currentItemId, function ($query) use ($currentItemId) {
                                                     // Skip item yang sedang diedit
                                                     $query->where('id', '!=', $currentItemId);
@@ -102,9 +102,9 @@ class PenggunaanForm
                                         };
                                     }),
                             ])
-                            ->required()
-                            ->itemLabel(fn(array $state) : ?string => DataBmn::find($state['bmn_id'])->nama_barang ?? 'Item'),
-                    ])
+                           ->required()
+                            ->itemLabel(fn(array $state) : ?string => DataBmn::find($state['bmn_id'], ['id', 'nama_barang'])->nama_barang ?? 'Item'),
+                    ]),
             ]);
     }
 }

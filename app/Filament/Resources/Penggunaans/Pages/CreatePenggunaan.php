@@ -48,7 +48,7 @@ class CreatePenggunaan extends CreateRecord
         ->values();
 
     // Cari PIC yang sesuai dengan jenis_bmn_id
-    $pics = User::where('role', 'pic')
+    $pics = User::where('role', '=', 'pic', 'and')
         ->whereIn('jenis_bmn_id', $jenisIds)
         ->get();
 
